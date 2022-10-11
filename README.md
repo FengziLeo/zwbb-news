@@ -5,7 +5,7 @@
 
 前端演示网站https://news.9421o.cn/
 
-本文爬虫、FastApi部分基础代码来自作者@zmzmt（代码地址：https://github.com/zmzmt/hot-api）
+本文爬虫、FastApi部分基础代码来自作者@zmzmt（代码地址：https://github.com/zmzmt/hot-api
 
 # 部署方法
 下载至电脑或者服务器
