@@ -7,7 +7,7 @@
 
 本文爬虫、FastApi部分基础代码来自作者@zmzmt（代码地址：https://github.com/zmzmt/hot-api）
 
-#部署方法
+# 部署方法
 下载至电脑或者服务器
 先安装requirements中所需要的库
 运行hotapi.py
