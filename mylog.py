@@ -4,7 +4,7 @@ import time
 
 def log(ip):
     #url = "http://whois.pconline.com.cn/ipJson.jsp?ip={}&json=true".format(ip)
-    url = 'https://api.ip138.com/ip/?ip={}&datatype=jsonp&token=4ed484c90dacb0ff55e6fde8d0bd34ab'.format(ip)
+    url = 'https://api.ip138.com/ip/?ip={}&datatype=jsonp&token=**'.format(ip)
     req = requests.get(url).text
     json1 = json.loads(req)
     #ip_addr = json1["addr"]
