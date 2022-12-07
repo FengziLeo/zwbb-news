@@ -1,11 +1,13 @@
 # zwbb-news
 微博、B站、百度、百度贴吧热搜获取，并展示在前端
 
+
 代码基于Python3.9以及html5开发
 
-前端演示网站https://news.9421o.cn/
+前端演示网站https://news.9421o.cn/ 新闻聚合
 
-本文爬虫、FastApi部分基础代码来自作者@zmzmt（代码地址：https://github.com/zmzmt/hot-api
+注意：
+本文爬虫、FastApi部分基础代码来自作者@zmzmt（代码地址：https://github.com/zmzmt/hot-api）
 由于原作者开发时间较早，部分代码已经不再符合部分网站，遂根据现在网站的情况进行重写
 
 # 部署方法
@@ -13,3 +15,25 @@
 先安装requirements中所需要的库
 运行hotapi.py
 浏览器访问http://127.0.0.1:80即可
+
+# 后记
+本项目暂时只开源Python后端的内容。因为本项目是我的毕业设计，涉及到学术问题，以及我是一个学习知识产权的学生，对于知识产权较为看重，但我认为后端开源问题不大，也是因为其他大佬以及开源，故将Pyhon部分进行开源，前端部分暂不打算进行开源。如果你是为了找毕设才看到此项目，建议你不妨自己试着写一写，我只是一个计算机辅修的学生，作为更加专业的你，我相信没有问题。
+
+## 更新日志
+### 版本2（2022.12.7）
+1、加入了生成log文件，用于记录访问的ip以及ip归属地，ip归属地的查询可在网上寻找公开免费的api，将代码简单更改即可
+使用方式：
+前端进行调用，示例如下：
+$.ajax({
+	type: 'GET',
+	url: 'https://api.ip.cn/',
+	dataType: 'json',
+	success: function(data) {
+		console.log(data);
+	},
+});
+同时需要注意，需要引入jqery库才可以正常使用<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+
+2、增加了热词图生成
+可以根据百度的热搜直接生成热搜图，在进程的情况下也可以正常调用，不会出现错误
+热搜图生成的函数已经封装，可以在Spider.py当中对其他网站热搜直接调用
