@@ -3,8 +3,8 @@ import requests
 import time
 
 def log(ip):
-    #url = "http://whois.pconline.com.cn/ipJson.jsp?ip={}&json=true".format(ip)
-    url = 'https://api.ip138.com/ip/?ip={}&datatype=jsonp&token=**'.format(ip)
+    #url = "http://whois.pconline.com.cn/ipJson.jsp?ip={}&json=true".format(ip) 
+    url = 'https://api.ip138.com/ip/?ip={}&datatype=jsonp&token=**'.format(ip) #这里我使用的是ip138的接口，感觉较准，但是是收费的，也可以用上一行免费的接口，需要将代码简单修改即可
     req = requests.get(url).text
     json1 = json.loads(req)
     #ip_addr = json1["addr"]
