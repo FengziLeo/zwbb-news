@@ -1,12 +1,14 @@
-# -*- coding: utf-8 -*-
+ # -*- coding: utf-8 -*-
 
 import uvicorn
 from spider import Spider
 from weibospider import spider_weibo
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from threading import Timer
 from threading import Thread
 import time
+from mylog import log
+
 
 
 data_zhihu = []     #知乎
@@ -63,14 +65,16 @@ def task2():
     #多线程运行
     Thread(target=run_bsite,).start()
     Thread(target=b_time,).start()
-    Timer(24*60*60,task2,).start()
+    Timer(12*60*60,task2,).start()
 
 task1()
 task2()
 
 app = FastAPI()
 @app.get("/")
-def index():
+def index(request: Request):
+    client_host = request.client.host
+    log(client_host)
     return {'hello':'world!'}
 
 @app.get("/hot/{name}")
@@ -85,8 +89,8 @@ def read_name(name: str):
         return data_bsite
     elif name =='baidu':
         return data_baidu
-    client_host_ip = request.client.host
-    print(client_host_ip)
+    
+
 
 @app.get("/time/{name}")
 def zwb(name: str):

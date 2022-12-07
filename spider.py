@@ -5,6 +5,8 @@ import requests
 from lxml import etree
 from threading import Timer
 
+from ciyun import CY
+
 baidu_api = "https://top.baidu.com/api/board?platform=wise&tab=realtime"
 bsite_api = 'https://www.bilibili.com/v/popular/rank/all'
 weibo_api = "https://s.weibo.com/top/summary/"
@@ -33,18 +35,15 @@ class Spider(object):
 
 
     #知乎热榜
-            
     def spider_zhihu(self):
-        
         list_zhihu = [] #此列表用于储存解析结果
         res = Spider(zhihu_api).res  
         #逐步解析接口返回的json
         zhihu_data = json.loads(res.text)['data']
         for part_zhihu_data in zhihu_data:              #遍历每一个data对象
-            zhihu_url = part_zhihu_data['target']['url']    #从对象得到问题的url
-            zhihu_url = zhihu_url[0:8] + zhihu_url[12:30] + zhihu_url[31::]
+            zhihu_id = part_zhihu_data['target']['id']    #从对象得到问题的id
             zhihu_title = part_zhihu_data['target']['title'] #从对象得到问题的title
-            list_zhihu.append([zhihu_title,zhihu_url])          #将url 和title组为一个列表，并添加在list_zhihu列表中
+            list_zhihu.append([zhihu_title,zhihu_id])
         return packdata(list_zhihu)
     
     #微博热搜见weibospider
@@ -72,25 +71,23 @@ class Spider(object):
 
     #百度
     def spider_baidu(self):
+        ciyun = ''
         list_baidu = []
         titles = []
         url = []
         res = Spider(baidu_api).res
         json_data = res.json()
         jsondata = json_data['data']['cards'][0]['content']
-       
-        
         for data in jsondata:
             new_url = str(data['url'])
             new_url = new_url[0:8] + new_url[10::]
             titles.append(data['word'])
             url.append(new_url)
-
         for i in range(30):
             list_baidu.append([titles[i],url[i]])
-            
+            ciyun = ciyun + titles[i]
+        CY(ciyun,'baidu')
         return packdata(list_baidu)
-            
-        
+
         
 

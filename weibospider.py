@@ -2,7 +2,7 @@ from lxml import etree
 import requests
 
 
-
+ciyun_weibo=''
 
 BASE_URL = 'https://s.weibo.com'
 
@@ -50,6 +50,7 @@ def parseHTMLByXPath(content):
     weibo_data=[]
     for i in range(50):
         weibo_data.append([titles[i],hrefs[i]])
+
 
     list_data = []
     for n in weibo_data:
