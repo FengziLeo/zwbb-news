@@ -8,7 +8,7 @@ from threading import Timer
 from ciyun import CY
 
 baidu_api = "https://top.baidu.com/api/board?platform=wise&tab=realtime"
-bsite_api = 'https://www.bilibili.com/v/popular/rank/all'
+bsite_api = 'https://api.bilibili.com/x/web-interface/ranking/v2?rid=0&type=all'
 weibo_api = "https://s.weibo.com/top/summary/"
 tieba_api = "http://tieba.baidu.com/hottopic/browse/topicList?res_type=1"
 zhihu_api = 'https://www.zhihu.com/api/v3/feed/topstory/hot-lists/total?limit=50&desktop=true'
@@ -61,13 +61,15 @@ class Spider(object):
 
     #B站排行榜
     def spider_bsite(self):
-        list_bsite = []
-        soup = Spider(bsite_api).soup
-        for i in soup.xpath("//div[@class='info']/a"):
-            bsite_title = i.xpath('text()')[0]
-            bsite_url = i.get('href')
-            list_bsite.append([bsite_title,bsite_url])
-        return packdata(list_bsite)
+        response = requests.get(bsite_api)
+        data = response.json()
+        result = []
+        items = data["data"]["list"]
+        for item in items:
+            title = item["title"]
+            url = item["short_link_v2"]
+            result.append({"title": title, "url": url})
+        return result
 
     #百度
     def spider_baidu(self):
