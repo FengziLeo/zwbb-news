@@ -21,18 +21,18 @@
 
 ## 更新日志
 ### 版本2（2022.12.7）
-1、加入了生成log文件，用于记录访问的ip以及ip归属地，ip归属地的查询可在网上寻找公开免费的api，将代码简单更改即可
-使用方式：
-前端进行调用，示例如下：
-$.ajax({
-	type: 'GET',
-	url: 'https://api.ip.cn/',
-	dataType: 'json',
-	success: function(data) {
-		console.log(data);
-	},
-});
-同时需要注意，需要引入jqery库才可以正常使用<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+1、加入了生成log文件，用于记录访问的ip以及ip归属地，ip归属地的查询可在网上寻找公开免费的api，将代码简单更改即可  
+使用方式：  
+前端进行调用，示例如下：  
+$.ajax({  
+	type: 'GET',  
+	url: 'https://api.ip.cn/',  
+	dataType: 'json',  
+	success: function(data) {  
+		console.log(data);  
+	},  
+});  
+同时需要注意，需要引入jqery库才可以正常使用<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>  
 
 2、增加了热词图生成
 可以根据百度的热搜直接生成热搜图，在进程的情况下也可以正常调用，不会出现错误
