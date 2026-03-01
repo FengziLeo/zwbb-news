@@ -5,6 +5,7 @@
 代码基于Python3.9以及html5开发
 
 前端演示网站https://news.fz.do/ 新闻聚合
+注：演示网站所依赖的API已使用cloudflare workers重写，不再依赖本项目（2026.2.28）
 
 注意：
 本文爬虫、FastApi部分基础代码来自作者@nonomal（代码地址：https://github.com/nonomal/hot-api）
